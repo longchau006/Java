@@ -25,7 +25,7 @@ jobs:
       - name: Setup Fortify Tools
         uses: fortify/github-action@v3
         env:
-          SSC_URL: ${{ vars.SSC_URL }}
+          SSC_URL: ${{ secrets.SSC_URL }}
           SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
           SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
           SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
@@ -37,7 +37,7 @@ jobs:
         run: |
           scancentral -url "$env:SSC_URL" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"
         env:
-          SSC_URL: ${{ vars.SSC_URL }}
+          SSC_URL: ${{ secrets.SSC_URL }}
           SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
           SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
           SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
