@@ -1,26 +1,38 @@
 name: Fortify SSC Scan
+
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   fortify:
-    runs-on: ubuntu-latest
-    # permissions:               # When overriding default permissions, following are required:
-    #   contents: read           # Required for checkout action
-    #   security-events: write   # Required for publishing security reports to GitHub Security tab
-    #   pull-requests: write     # Required if DO_PR_COMMENT is set to true
+    runs-on: windows-2022
+
     steps:
-      - uses: actions/checkout@v4            # Check out source code
-      - uses: actions/setup-<build-tool>@vX  # Set up build tool(s) required to build your project
-        # Bootstrap fcli, run the fcli-based Fortify CI workflow, and upload any debug artifacts
-        # to GitHub artifact storage (see artifact storage section below for alternative options)
-      - uses: fortify/github-action@v3
-        name: Run Fortify Scan
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      # Thay đổi build tool phù hợp nếu dự án cần (ví dụ Java/Maven, .NET, Node.js...)
+      # - name: Set up JDK
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     distribution: 'temurin'
+      #     java-version: '17'
+
+      # Bước 1: Setup môi trường công cụ Fortify (fcli, scancentral...)
+      - name: Setup Fortify Tools
+        uses: fortify/github-action@v3
+
+      # Bước 2: Chạy lệnh quét ScanCentral
+      - name: Run Fortify Scan
+        shell: pwsh
+        run: |
+          scancentral -url "$env:SSC_URL" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"
         env:
           SSC_URL: ${{ vars.SSC_URL }}
           SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
           SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
-          # SSC_APPVERSION: MyApp:main  # Optional: defaults to repo:branch
+          SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
+          SSC_APPLICATION: ${{ secrets.SSC_APP }}
