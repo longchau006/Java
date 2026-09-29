@@ -33,7 +33,7 @@ jobs:
 
       # Bước 2: Chạy lệnh quét ScanCentral
       - name: Run Fortify Scan
-        shell: pwsh
+        shell: powershell
         run: |
           scancentral -url "$env:SSC_URL" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"
         env:
