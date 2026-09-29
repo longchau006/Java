@@ -24,6 +24,12 @@ jobs:
       # Bước 1: Setup môi trường công cụ Fortify (fcli, scancentral...)
       - name: Setup Fortify Tools
         uses: fortify/github-action@v3
+        env:
+          SSC_URL: ${{ vars.SSC_URL }}
+          SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
+          SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
+          SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
+          SSC_APPLICATION: ${{ secrets.SSC_APP }}
 
       # Bước 2: Chạy lệnh quét ScanCentral
       - name: Run Fortify Scan
