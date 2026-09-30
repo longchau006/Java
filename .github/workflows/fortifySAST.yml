@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Add Git Bash to PATH
-        shell: pwsh
+        shell: powershell
         run: |
           $gitBin = "C:\Program Files\Git\bin"
           $gitUsrBin = "C:\Program Files\Git\usr\bin"
