@@ -11,6 +11,16 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Add Git Bash to PATH
+        shell: pwsh
+        run: |
+          $gitBin = "C:\Program Files\Git\bin"
+          $gitUsrBin = "C:\Program Files\Git\usr\bin"
+          
+          # Đẩy cả 2 thư mục vào GITHUB_PATH để composite action nhận diện được bash
+          if (Test-Path $gitBin) { $gitBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append }
+          if (Test-Path $gitUsrBin) { $gitUsrBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append }
+
       - name: Check out source code
         uses: actions/checkout@v4
 
