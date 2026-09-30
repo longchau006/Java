@@ -10,6 +10,13 @@ jobs:
   fortify:
     runs-on: self-hosted
 
+    # Thêm khối permissions này:
+    permissions:
+      contents: read
+      security-events: write   # Để đẩy file SARIF lên tab Security của GitHub
+      checks: write            # Để tạo Check Run hiển thị kết quả kiểm tra
+      pull-requests: write     # (Tùy chọn) Để comment kết quả vào PR
+
     steps:
       - name: Add Git Bash to PATH
         shell: powershell
