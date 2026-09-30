@@ -40,6 +40,7 @@ jobs:
           SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
           SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
           SSC_APPLICATION: ${{ secrets.SSC_APP }}
+          SC_CLIENT_VERSION: "26.2.0"
 
       # Bước 2: Chạy lệnh quét ScanCentral
       - name: Run Fortify Scan
