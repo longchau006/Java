@@ -52,11 +52,9 @@ jobs:
       # Bước 2: Chạy lệnh quét ScanCentral
       - name: Run Fortify Scan
         shell: powershell
-        run: |
-          scancentral -url "http://192.168.37.187:8080/scancentral-ctrl" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"        env:
         env:
-          SSC_URL: ${{ secrets.SSC_URL }}
           SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
-          SC_SAST_TOKEN: ${{ secrets.SC_SAST_TOKEN }}
           SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
           SSC_APPLICATION: ${{ secrets.SSC_APP }}
+        run: |
+          scancentral -url "http://192.168.37.187:8080/scancentral-ctrl" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"        env:
