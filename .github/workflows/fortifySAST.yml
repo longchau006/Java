@@ -57,4 +57,4 @@ jobs:
           SSC_APPVERSION: ${{ secrets.SSC_APPVERSION }}
           SSC_APPLICATION: ${{ secrets.SSC_APP }}
         run: |
-          scancentral -url "http://192.168.37.187:8080/scancentral-ctrl" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"        env:
+          scancentral -url "http://192.168.37.187:8080/scancentral-ctrl" start -uptoken "$env:SSC_TOKEN" -application "$env:SSC_APPLICATION" -version "$env:SSC_APPVERSION"
