@@ -19,4 +19,4 @@ Please read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute
 ## Algorithms
 Our [directory](DIRECTORY.md) has the full list of applications.
 
-## trigger 9
+## trigger 10
